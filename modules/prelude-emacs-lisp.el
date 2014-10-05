@@ -67,7 +67,6 @@ Start `ielm' if it's not already running."
   (run-hooks 'prelude-lisp-coding-hook)
   (turn-on-eldoc-mode)
   (prelude-recompile-elc-on-save)
-  (rainbow-mode +1)
   (setq mode-name "EL")
   (prelude-conditional-emacs-lisp-checker))
 
@@ -91,8 +90,6 @@ Start `ielm' if it's not already running."
 
 (eval-after-load "elisp-slime-nav"
   '(diminish 'elisp-slime-nav-mode))
-(eval-after-load "rainbow-mode"
-  '(diminish 'rainbow-mode))
 (eval-after-load "eldoc"
   '(diminish 'eldoc-mode))
 
