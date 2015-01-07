@@ -10,7 +10,7 @@
 (add-hook 'prog-mode-hook '(lambda ()
                              (linum-mode 1)))
 
-(setq dh-packages '(rspec-mode yasnippet))
+(setq dh-packages '(rspec-mode yasnippet ag))
 
 (prelude-require-packages dh-packages)
 
