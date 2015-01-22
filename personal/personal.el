@@ -6,17 +6,23 @@
 
 ;;; Code:
 
-;; enable line numbers for all programming modes
-(add-hook 'prog-mode-hook '(lambda ()
-                             (linum-mode 1)))
+(defun dh-prog-mode-defaults ()
+  "Set up defaults for programming modes."
+  (linum-mode 1)
+  (fci-mode 1)
+  (setq fci-rule-column 100))
 
-(setq dh-packages '(rspec-mode yasnippet ag))
+(add-hook 'prog-mode-hook 'dh-prog-mode-defaults)
+
+(setq dh-packages '(rspec-mode yasnippet ag fill-column-indicator))
 
 (prelude-require-packages dh-packages)
 
 '(require 'rspec-mode)
 (require 'yasnippet)
 (yas-global-mode 1)
+
+(require 'fill-column-indicator)
 
 (eval-after-load 'rspec-mode
   '(rspec-install-snippets))
