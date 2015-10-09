@@ -14,7 +14,7 @@
 
 (add-hook 'prog-mode-hook 'dh-prog-mode-defaults)
 
-(setq dh-packages '(rspec-mode yasnippet ag fill-column-indicator))
+(setq dh-packages '(rspec-mode yasnippet ag fill-column-indicator gist))
 
 (prelude-require-packages dh-packages)
 
