@@ -24,6 +24,9 @@
 
 (require 'fill-column-indicator)
 
+; enable file caching for projectile
+(setq projectile-enable-caching t)
+
 (eval-after-load 'rspec-mode
   '(rspec-install-snippets))
 
