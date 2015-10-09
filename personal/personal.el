@@ -18,6 +18,8 @@
 
 (prelude-require-packages dh-packages)
 
+(require 'prelude-helm-everywhere)
+
 '(require 'rspec-mode)
 (require 'yasnippet)
 (yas-global-mode 1)
