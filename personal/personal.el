@@ -29,6 +29,9 @@
 ; enable file caching for projectile
 (setq projectile-enable-caching t)
 
+; custom keybindings
+(global-set-key (kbd "M-p") 'ace-window)
+
 (eval-after-load 'rspec-mode
   '(rspec-install-snippets))
 
