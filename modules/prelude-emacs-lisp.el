@@ -1,6 +1,6 @@
 ;;; prelude-emacs-lisp.el --- Emacs Prelude: Nice config for Elisp programming.
 ;;
-;; Copyright © 2011-2014 Bozhidar Batsov
+;; Copyright © 2011-2016 Bozhidar Batsov
 ;;
 ;; Author: Bozhidar Batsov <bozhidar@batsov.com>
 ;; URL: https://github.com/bbatsov/prelude
@@ -34,6 +34,9 @@
 ;;; Code:
 
 (require 'prelude-lisp)
+(require 'crux)
+
+(prelude-require-packages '(elisp-slime-nav rainbow-mode))
 
 (defun prelude-recompile-elc-on-save ()
   "Recompile your elc when saving an elisp file."
@@ -50,7 +53,7 @@
   "Switch to default `ielm' buffer.
 Start `ielm' if it's not already running."
   (interactive)
-  (prelude-start-or-switch-to 'ielm "*ielm*"))
+  (crux-start-or-switch-to 'ielm "*ielm*"))
 
 (define-key emacs-lisp-mode-map (kbd "C-c C-z") 'prelude-visit-ielm)
 (define-key emacs-lisp-mode-map (kbd "C-c C-c") 'eval-defun)
@@ -65,7 +68,7 @@ Start `ielm' if it's not already running."
 (defun prelude-emacs-lisp-mode-defaults ()
   "Sensible defaults for `emacs-lisp-mode'."
   (run-hooks 'prelude-lisp-coding-hook)
-  (turn-on-eldoc-mode)
+  (eldoc-mode +1)
   (prelude-recompile-elc-on-save)
   (setq mode-name "EL")
   (prelude-conditional-emacs-lisp-checker))
@@ -81,7 +84,7 @@ Start `ielm' if it's not already running."
 (defun prelude-ielm-mode-defaults ()
   "Sensible defaults for `ielm'."
   (run-hooks 'prelude-interactive-lisp-coding-hook)
-  (turn-on-eldoc-mode))
+  (eldoc-mode +1))
 
 (setq prelude-ielm-mode-hook 'prelude-ielm-mode-defaults)
 

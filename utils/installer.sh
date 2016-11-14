@@ -15,8 +15,6 @@ install_prelude () {
 
 make_prelude_dirs () {
     printf " Making the required directories.\n$RESET"
-    mkdir -p "$PRELUDE_INSTALL_DIR/vendor" "$PRELUDE_INSTALL_DIR/personal"
-    mkdir -p "$PRELUDE_INSTALL_DIR/themes"
     mkdir -p "$PRELUDE_INSTALL_DIR/savefile"
 }
 
@@ -149,7 +147,7 @@ then
 fi
 
 # If prelude is already installed
-if [ -d "$PRELUDE_INSTALL_DIR/core/prelude-core.el" ]
+if [ -f "$PRELUDE_INSTALL_DIR/core/prelude-core.el" ]
 then
     printf "\n\n$BRED"
     printf "You already have Prelude installed.$RESET\nYou'll need to remove $PRELUDE_INSTALL_DIR/prelude if you want to install Prelude again.\n"
@@ -179,6 +177,13 @@ fi
 if [ $(emacs --version 2>/dev/null | sed -n 's/.*[^0-9.]\([0-9]*\.[0-9.]*\).*/\1/p;q' | sed 's/\..*//g') -lt 24 ]
 then
     printf "$YELLOW WARNING:$RESET Prelude depends on emacs $RED 24$RESET !\n"
+fi
+
+if [ -f "$HOME/.emacs" ]
+then
+    ## If $HOME/.emacs exists, emacs ignores prelude's init.el, so remove it
+    printf " Backing up the existing $HOME/.emacs to $HOME/.emacs.pre-prelude\n"
+    mv $HOME/.emacs $HOME/.emacs.pre-prelude
 fi
 
 if [ -d "$PRELUDE_INSTALL_DIR" ] || [ -f "$PRELUDE_INSTALL_DIR" ]
